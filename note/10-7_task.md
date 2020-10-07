@@ -22,13 +22,13 @@ Todoアプリの作成
         - カラム
             - id  
                 属性: AUTO_INCREMENT、PRIMARY KEY
-            - title
-                型: varchar(255)
-                属性: NOT NULL
+            - title  
+                型: varchar(255)  
+                属性: NOT NULL  
                 ※todoのタイトル用のカラム
-            - content
-                型: varchar(255)
-                属性: NOT NULL
+            - content  
+                型: varchar(255)  
+                属性: NOT NULL  
                 ※todoの内容用のカラム
         - 完成イメージ  
             `mysql> show columns from task;`
