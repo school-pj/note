@@ -1,4 +1,4 @@
-## 10/6 ~ 10/7 の課題
+## 10/7 ~ 10/9 の課題
 Todoアプリの作成
 
 1. 準備
@@ -85,3 +85,7 @@ DBの操作は参考資料にある、knex.jsのドキュメントを参考に�
 * EJS
     * https://expressjs.com/ja/guide/using-template-engines.html
     * https://ejs.co/#docs
+* HTML
+    * [初めてのフォーム](https://developer.mozilla.org/ja/docs/Learn/Forms/Your_first_HTML_form)
+    * [\<input type="submit">](https://developer.mozilla.org/ja/docs/Web/HTML/Element/input/submit)
+    * [\<input type="hidden">](https://developer.mozilla.org/ja/docs/Web/HTML/Element/input/hidden)
