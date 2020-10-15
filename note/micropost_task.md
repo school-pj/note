@@ -12,8 +12,17 @@ ToDoアプリの作成を通して、HTML, CSS, JavaScriptの基礎を学ぶ
 * class, id
 * etc
 ### JavaScript
+* 基本構文
+* object, array
+  ```
+  tasks = [
+  { created_at: '2020-04-01 12:34:56', comment: 'Buy milk' },
+  { created_at: '2020-04-01 12:34:56', comment: 'Buy coffee' },
+  ...
+  ]
+  ```
 * dom操作
-＊ etc
+* etc
 
 # ToDoアプリをウェブアプリケーションとして作成しよう
 ## 目標
