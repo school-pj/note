@@ -6,7 +6,6 @@ let isAuth;
 router.get('/', function (req, res, next) {
   if (req.session.userid && req.session.username) {
     isAuth = true;
-    console.debug(isAuth);
     knex("tasks")
       .where({user_id: req.session.userid})
       .select("*")
@@ -14,6 +13,7 @@ router.get('/', function (req, res, next) {
         const tasks = JSON.parse(JSON.stringify(results));
         res.render("index", {
           title: "",
+          errorMessage: "",
           isAuth: isAuth,
           tasks: tasks,
         })
@@ -22,7 +22,7 @@ router.get('/', function (req, res, next) {
         console.error(err);
         res.render("index", {
           title: "",
-          errorMessage: [content],
+          errorMessage: [err.sqlMessage],
           isAuth: isAuth,
         });
       });
@@ -30,6 +30,7 @@ router.get('/', function (req, res, next) {
     isAuth = false;
     res.render("index", {
       title: "",
+      errorMessage: "",
       isAuth: isAuth,
     });
   }
@@ -45,7 +46,7 @@ router.post('/', function (req, res, next) {
       console.error(err);
       res.render("index", {
         title: "",
-        errorMessage: [content],
+        errorMessage: [err.sqlMessage],
         isAuth: isAuth,
       });
     });

@@ -2,11 +2,10 @@ const express = require('express');
 const router = express.Router();
 const knex = require("../db/knex");
 
-/* GET home page. */
 router.get('/', function (req, res, next) {
   res.render("signup", {
     title: "Sign up",
-    //isAuth: req.isAuthenticated(),
+    errorMessage: "",
   });
 });
 
@@ -23,14 +22,16 @@ router.post('/', function (req, res, next) {
       })
       .catch(function (err) {
         console.error(err);
-        res.render("/", {
-          title: "",
-          errorMessage: [content],
-          isAuth: false,
+        res.render("signup", {
+          title: "Sign up",
+          errorMessage: [err.sqlMessage],
         });
       });
   } else {
-    res.redirect('/signup');
+    res.render("signup", {
+      title: "Sign up",
+      errorMessage: ["Passwords don't match"],
+    });
   }
 });
 

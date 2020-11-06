@@ -8,15 +8,27 @@
   <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
 </head>
 <body>
+<% if(errorMessage.length != 0){ %>
+  <div>
+    <strong>Warning!</strong> The form contains <%= errorMessage.length %> errors.
+  </div>
+  <div>
+    <ul>
+      <% for(let item of errorMessage){ %>
+        <li><%= item %></li>
+      <% } %>
+    </ul>
+  </div>
+<% } %>
 <form action="/signup" method="post">
   <label>ユーザ名</label>
-  <input type="text" name="username"/>
+  <input required type="text" name="username"/>
   <br>
   <label>パスワード</label>
-  <input type="text" name="password"/>
+  <input required type="text" name="password"/>
   <br>
   <label>パスワード再入力</label>
-  <input type="text" name="repassword"/>
+  <input required type="text" name="repassword"/>
   <br>
   <input type="submit" value="Sign up"/>
 </form>

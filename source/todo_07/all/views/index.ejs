@@ -8,6 +8,18 @@
   <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
 </head>
 <body>
+<% if(errorMessage.length != 0){ %>
+  <div>
+    <strong>Warning!</strong> The form contains <%= errorMessage.length %> errors.
+  </div>
+  <div>
+    <ul>
+      <% for(let item of errorMessage){ %>
+        <li><%= item %></li>
+      <% } %>
+    </ul>
+  </div>
+<% } %>
 <% if(!isAuth) { %>
   <span><a href="/signup">Sign up</a></span>
   <span><a href="/signin">Sign in</a></span>
