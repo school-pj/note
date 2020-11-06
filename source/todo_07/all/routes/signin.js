@@ -2,11 +2,10 @@ const express = require('express');
 const router = express.Router();
 const knex = require("../db/knex");
 
-/* GET home page. */
 router.get('/', function (req, res, next) {
   res.render("signin", {
     title: "Sign in",
-    //isAuth: req.isAuthenticated(),
+    errorMessage: "",
   });
 });
 
@@ -15,26 +14,31 @@ router.post('/', function (req, res, next) {
   const password = req.body.password;
 
   knex("users")
-    .where({name: username})
-    .andWhere({password: password})
+    .where({
+      name: username,
+      password: password,
+    })
     .select("*")
     .then((results) => {
       if (results.length === 0) {
-        throw new Error("User not found");
+        console.debug(results);
+        res.render("signin", {
+          title: "Sign in",
+          errorMessage: ["User not found"],
+        });
+      } else {
+        req.session.regenerate((err) => {
+          req.session.userid = results[0].id;
+          req.session.username = results[0].name;
+          res.redirect('/');
+        });
       }
-      req.session.regenerate((err) => {
-        console.debug(results[0].name);
-        req.session.username = username;
-        console.debug("セッション情報");
-        console.debug(req.session.username);
-        res.redirect('/');
-      });
     })
     .catch(function (err) {
       console.error(err);
-      res.render("/", {
-        title: "",
-        errorMessage: [content],
+      res.render("signin", {
+        title: "Sign in",
+        errorMessage: [err.sqlMessage],
         isAuth: false,
       });
     });
