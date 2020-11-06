@@ -9,21 +9,23 @@
 </head>
 <body>
 <% if(!isAuth) { %>
-  <form action="/signup" method="get" class="task-form">
-    <button type="submit" class="submit">Sign up</button>
-  </form>
-  <form action="/signin" method="get" class="task-form">
-    <button type="submit" class="submit">Sign in</button>
-  </form>
+  <span><a href="/signup">Sign up</a></span>
+  <span><a href="/signin">Sign in</a></span>
 <% } else { %>
-  <form action="/logout" method="get" class="task-form">
-    <button type="submit" class="submit">Logout</button>
-  </form>
+  <span><a href="/logout">Logout</a></span>
   <form action="/" method="post">
-  <label>タスクの追加</label>
-  <input type="text" name="content" placeholder="何をする?"/>
-  <input type="submit" value="追加"/>
+    <label>タスクの追加</label>
+    <input required type="text" name="content" placeholder="何をする?"/>
+    <input type="submit" value="追加"/>
   </form>
+  <div>
+    <% for(let task of tasks){ %>
+      <span>
+        <%= task.content %>
+      </span>
+      <br>
+    <% } %>
+  </div>
 <% } %>
 </body>
 </html>
