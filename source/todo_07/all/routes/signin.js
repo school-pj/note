@@ -24,7 +24,7 @@ router.post('/', function (req, res, next) {
         console.debug(results);
         res.render("signin", {
           title: "Sign in",
-          errorMessage: ["User not found"],
+          errorMessage: ["ユーザが見つかりません"],
         });
       } else {
         req.session.regenerate((err) => {
