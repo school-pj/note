@@ -14,6 +14,26 @@ router.post('/', function (req, res, next) {
   const password = req.body.password;
   const repassword = req.body.repassword;
 
+  knex("users")
+    .where({name: username})
+    .select("*")
+    .then(function (result) {
+      if (result.length !== 0) {
+        res.render("signup", {
+          title: "Sign up",
+          errorMessage: ["このユーザ名は既に使われています"],
+        })
+      }
+    })
+    .catch(function (err) {
+      console.error(err);
+      res.render("signup", {
+        title: "Sign up",
+        errorMessage: [err.sqlMessage],
+      });
+    });
+
+
   if (password === repassword) {
     knex("users")
       .insert({name: username, password: password})
@@ -30,7 +50,7 @@ router.post('/', function (req, res, next) {
   } else {
     res.render("signup", {
       title: "Sign up",
-      errorMessage: ["Passwords don't match"],
+      errorMessage: ["パスワードが一致しません"],
     });
   }
 });
