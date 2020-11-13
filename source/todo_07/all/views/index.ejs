@@ -20,6 +20,7 @@
     </ul>
   </div>
 <% } %>
+<span><a href="/">TodoApp</a></span>
 <% if(isAuth) { %>
   <span><a href="/logout">Logout</a></span>
   <form action="/" method="post">
@@ -33,7 +34,7 @@
         <%= task.content %>
         <% if(userId === task.user_id) { %>
           <form action="/" method="post">
-          <input required type="hidden" name="taskId" value=<%= task.id %> />
+          <input required type="hidden" name="taskId" value=<%= task.id %>/>
           <input type="submit" value="削除"/>
         </form>
         <% } %>
@@ -42,8 +43,9 @@
     <% } %>
   </div>
 <% } else { %>
-  <span><a href="/signup">Sign up</a></span>
   <span><a href="/signin">Sign in</a></span>
+  <h1>Welcome to the TodoApp</h1>
+  <button onclick="location.href='/signup'">Sign up</button>
 <% } %>
 </body>
 </html>
